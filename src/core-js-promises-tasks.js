@@ -39,8 +39,16 @@ function getPromise(number) {
  * Promise.resolve('success') => promise that will be fulfilled with 'success' value
  * Promise.reject('fail')     => promise that will be fulfilled with 'fail' value
  */
-function getPromiseResult(/* source */) {
-  throw new Error('Not implemented');
+function getPromiseResult(source) {
+  const onFulfilled = () =>
+    new Promise((resolve) => {
+      resolve('success');
+    });
+  const onRejected = () =>
+    new Promise((resolve) => {
+      resolve('fail');
+    });
+  return source.then(onFulfilled, onRejected);
 }
 
 /**
